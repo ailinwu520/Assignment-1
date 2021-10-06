@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Part2 {
-    final static int SIZE = 500000;
+    final static int SIZE = 50000;
 
     //sorted region funtion
     static void sortedRegions(double[] arr, ArrayList<Integer> timeStart, ArrayList<Integer> timeEnd) {
@@ -61,6 +61,7 @@ public class Part2 {
         Part2 sorting = new Part2();
         arr = randomNumbers(10);
         sorting.sortedRegions(arr, timeStart, timeEnd);
+        sorting.selectionSort(arr);
 
         for (double n : arr)
             System.out.println( "   " + n);
