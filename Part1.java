@@ -1,8 +1,8 @@
 import java.util.Arrays;
 import java.util.Random;
 public class Part1 {
-//    final static int SIZE = 450000;
-    final static int SIZE = 500000;
+    final static int SIZE = 50000;
+
 
     // swap function
     static void swap(double[] arr, int i, int j)
@@ -14,12 +14,11 @@ public class Part1 {
 
     // selection sort function
     public void selectionSort (double [] arr) {
-        int n = arr.length;
         // loop through each element
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             // find the first index in the middle
             int firstIndex = i;
-            for (int j = i + 1; j < n; j++)
+            for (int j = i + 1; j < arr.length; j++)
                 if (arr[j] < arr[firstIndex])
                     firstIndex = j;
             //swap the first index with the first element
@@ -29,10 +28,9 @@ public class Part1 {
 
     // bubble sort
     public void bubbleSort (double [] arr ){
-            int n = arr.length;
             // loop through each element
-            for (int i = 0; i < n-1; i++)
-                for (int j = 0; j < n-i-1; j++)
+            for (int i = 0; i < arr.length - 1; i++)
+                for (int j = 0; j < arr.length - i - 1; j++)
                     if (arr[j] > arr[j+1])
                     {
                         // swap arr[j+1] and arr[j]
@@ -42,8 +40,7 @@ public class Part1 {
 
     // insertion sort
     public void insertionSort (double [] arr){
-        int n = arr.length;
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < arr.length; ++i) {
             double key = arr[i];
             int j = i - 1;
             // if arr[i] greater than key, then move one position ahead
@@ -112,7 +109,7 @@ public class Part1 {
     }
 
     // quick sort
-    static int quickSort(double[] arr, int low, int high)
+    public int quickSort(double[] arr, int low, int high)
     {
         // initialize pivot
         double pivot = arr[high];
@@ -133,25 +130,16 @@ public class Part1 {
     }
 
     // quick sort helper
-    public static void quickSortHelper (double [] arr, int low, int high){
+    void quickSortHelper (double [] arr, int low, int high){
         if (low < high)
         {
             // partitioning index at right place
             int pi = quickSort(arr, low, high);
             // sort elements before and after partition
-            quickSortHelper(arr, low, pi - 1);
-            quickSortHelper(arr, pi + 1, high);
+            quickSortHelper(arr, low, quickSort(arr, low, high) - 1);
+            quickSortHelper(arr, quickSort(arr, low, high) + 1, high);
         }
     }
-
-//    // Function to print an array
-//    static void printArray(int[] arr, int size)
-//    {
-//        for(int i = 0; i < size; i++)
-//            System.out.print(arr[i] + " ");
-//
-//        System.out.println();
-//    }
 
     //generate random double array
     private static double[] randomNumbers(int count) {
@@ -162,9 +150,6 @@ public class Part1 {
             numbers[i] = 50000 + random.nextInt(500000-50000);
         return numbers;
     }
-    //int random_int = (int)Math.floor(Math.random()*(500000-50000+1)+50000);
-    // double randomValue = 50000 + (500000 - 50000) * r.nextDouble();
-    // 50000 + random.nextInt(500000-50000);
 
     public static void main(String[] args) {
         Part1 sorting = new Part1 ();
@@ -187,13 +172,6 @@ public class Part1 {
         sorting.selectionSort(numberList1);
         endTime = System.currentTimeMillis();
         System.out.printf("Milliseconds to sort %d numbers with selectionSort: %d",
-                SIZE, endTime-startTime);
-        System.out.println();
-
-        startTime = System.currentTimeMillis();
-        Arrays.sort(numberList2);
-        endTime = System.currentTimeMillis();
-        System.out.printf("Milliseconds to sort %d numbers with Arrays.sort(): %d",
                 SIZE, endTime-startTime);
         System.out.println();
 
@@ -224,8 +202,5 @@ public class Part1 {
         System.out.printf("Milliseconds to sort %d numbers with quickSort: %d",
                 SIZE, endTime-startTime);
         System.out.println();
-
-
     }
-
 }
