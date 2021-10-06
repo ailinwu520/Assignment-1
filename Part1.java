@@ -159,6 +159,10 @@ public class Part1 {
 
         double[] numberList1;  // array of random numbers.
         double[] numberList2;  // copy of numberList1.
+        double[] numberList3;  // copy of numberList1.
+        double[] numberList4;  // copy of numberList1.
+        double[] numberList5;  // copy of numberList1.
+
 
         numberList1 = randomNumbers(10);
         sorting.selectionSort(numberList1);
@@ -168,6 +172,12 @@ public class Part1 {
 
         numberList1 = randomNumbers(SIZE);
         numberList2 = Arrays.copyOf(numberList1, SIZE);
+        numberList3 = Arrays.copyOf(numberList2, SIZE);
+        numberList4 = Arrays.copyOf(numberList3, SIZE);
+        numberList5 = Arrays.copyOf(numberList4, SIZE);
+
+
+
         startTime = System.currentTimeMillis();
         sorting.selectionSort(numberList1);
         endTime = System.currentTimeMillis();
@@ -183,21 +193,21 @@ public class Part1 {
         System.out.println();
 
         startTime = System.currentTimeMillis();
-        sorting.insertionSort(numberList2);
+        sorting.insertionSort(numberList3);
         endTime = System.currentTimeMillis();
         System.out.printf("Milliseconds to sort %d numbers with inserstionSort: %d",
                 SIZE, endTime-startTime);
         System.out.println();
 
         startTime = System.currentTimeMillis();
-       sorting.mergeSortHelper(numberList2, 0, numberList2.length - 1);
+       sorting.mergeSortHelper(numberList4, 0, numberList4.length - 1);
         endTime = System.currentTimeMillis();
         System.out.printf("Milliseconds to sort %d numbers with mergeSort: %d",
                 SIZE, endTime-startTime);
         System.out.println();
 
         startTime = System.currentTimeMillis();
-        sorting.quickSortHelper(numberList2,0, numberList2.length - 1);
+        sorting.quickSortHelper(numberList5,0, numberList5.length - 1);
         endTime = System.currentTimeMillis();
         System.out.printf("Milliseconds to sort %d numbers with quickSort: %d",
                 SIZE, endTime-startTime);
